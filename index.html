@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NeoAI - טכנולוגיית בינה מלאכותית</title>
+  <meta name="description" content="NeoAI - פתרונות בינה מלאכותית מתקדמים לעסקים וארגונים" />
+  <meta name="keywords" content="בינה מלאכותית, AI, מערכות לומדות, צ'אטבוט, עיבוד תמונה, זיהוי קולי" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#00ffff">
+  <link rel="apple-touch-icon" href="images/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- רקע תלת-ממדי -->
+  <canvas id="bg"></canvas>
+
+  <!-- אנימציית טעינה -->
+  <div class="loader" id="loader">
+    <div class="loader-content">
+      <div class="loader-circle"></div>
+      <div class="loader-text">טוען את העתיד...</div>
+      <div class="loader-progress-container">
+        <div class="loader-progress-bar" id="loader-progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- חלקיקים מרחפים -->
+  <div class="particles-container" id="particles-container"></div>
+
+  <!-- כותרת וניווט -->
+  <header>
+    <h1>NeoAI</h1>
+    <nav>
+      <a href="#" class="active">בית</a>
+      <a href="#services">שירותים</a>
+      <a href="#about">אודות</a>
+      <a href="#technologies">טכנולוגיות</a>
+      <a href="#contact">צור קשר</a>
+    </nav>
+  </header>
+
+  <!-- מקטע גיבור -->
+  <section class="hero">
+    <h2>AI שמשנה את העולם</h2>
+    <p>בינה מלאכותית המשלבת טכנולוגיה עוצמתית וחוויית משתמש בלתי נשכחת. אנחנו מפתחים פתרונות AI מתקדמים שמעצימים עסקים ומשנים את דרך החשיבה על טכנולוגיה.</p>
+    <div class="hero-buttons">
+      <button class="btn-glow">בואו נתחיל</button>
+      <button class="btn-glow secondary">צפה בהדגמה</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-number">98%</span>
+        <span class="stat-text">דיוק בזיהוי</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">3x</span>
+        <span class="stat-text">יעילות משופרת</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">24/7</span>
+        <span class="stat-text">זמינות מלאה</span>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <div class="scroll-text">גלול למטה</div>
+    </div>
+  </section>
+
+  <!-- מקטע שירותים -->
+  <section id="services" class="services-section">
+    <div class="section-header">
+      <h2>השירותים שלנו</h2>
+      <p>פתרונות בינה מלאכותית מותאמים אישית לצרכים העסקיים שלך</p>
+    </div>
+    <div class="services">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-icon"><i class="fas fa-eye"></i></div>
+          <h3>Vision AI</h3>
+          <p>מערכות זיהוי תמונה מתקדמות המבוססות על ראיה ממוחשבת. מאפשרות זיהוי אובייקטים, פנים, טקסט וניתוח תמונות בזמן אמת.</p>
+          <a href="#" class="card-link">למד עוד <i class="fas fa-arrow-left"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-icon"><i class="fas fa-comments"></i></div>
+          <h3>Chatbot AI</h3>
+          <p>צ'אטבוטים חכמים לניהול שיח אוטומטי מותאם אישית לעסק. מערכות שיחה מתקדמות המבוססות על עיבוד שפה טבעית ולמידת מכונה.</p>
+          <a href="#" class="card-link">למד עוד <i class="fas fa-arrow-left"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-icon"><i class="fas fa-microphone"></i></div>
+          <h3>Voice AI</h3>
+          <p>מערכות ניתוח קול ובקרת פקודות קוליות עם בינה מלאכותית. זיהוי דיבור, המרת טקסט לדיבור, וניתוח רגשות מתוך הקול.</p>
+          <a href="#" class="card-link">למד עוד <i class="fas fa-arrow-left"></i></a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Predictive AI</h3>
+          <p>מערכות חיזוי וניתוח נתונים מתקדמות לקבלת החלטות עסקיות. זיהוי מגמות, חיזוי התנהגות לקוחות וייעול תהליכים.</p>
+          <a href="#" class="card-link">למד עוד <i class="fas fa-arrow-left"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- מקטע אודות -->
+  <section id="about" class="about-section">
+    <div class="section-header">
+      <h2>מי אנחנו</h2>
+      <p>צוות מומחים בתחום הבינה המלאכותית עם ניסיון של למעלה מעשור</p>
+    </div>
+    <div class="about-content">
+      <div class="about-text">
+        <h3>המשימה שלנו</h3>
+        <p>ב-NeoAI אנו מאמינים שבינה מלאכותית צריכה להיות נגישה, אתית ומועילה לכולם. המשימה שלנו היא לפתח פתרונות AI חדשניים שמשפרים את חיי היומיום, מייעלים תהליכים עסקיים ומקדמים את האנושות קדימה.</p>
+        
+        <h3>הערכים שלנו</h3>
+        <ul class="values-list">
+          <li><i class="fas fa-check-circle"></i> <span>חדשנות מתמדת</span></li>
+          <li><i class="fas fa-check-circle"></i> <span>אתיקה ושקיפות</span></li>
+          <li><i class="fas fa-check-circle"></i> <span>מצוינות טכנולוגית</span></li>
+          <li><i class="fas fa-check-circle"></i> <span>פתרונות מותאמים אישית</span></li>
+        </ul>
+        
+        <div class="cta-container">
+          <button class="btn-glow">הצטרף לצוות</button>
+        </div>
+      </div>
+      <div class="about-image">
+        <div class="image-container">
+          <img src="images/team.jpg" alt="צוות NeoAI" />
+          <div class="image-overlay"></div>
+        </div>
+        <div class="stats-container">
+          <div class="stat-box">
+            <span class="stat-number">150+</span>
+            <span class="stat-text">פרויקטים</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-number">50+</span>
+            <span class="stat-text">לקוחות</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-number">10+</span>
+            <span class="stat-text">שנות ניסיון</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- מקטע טכנולוגיות -->
+  <section id="technologies" class="tech-section">
+    <div class="section-header">
+      <h2>הטכנולוגיות שלנו</h2>
+      <p>אנו משתמשים בטכנולוגיות המתקדמות ביותר בתחום הבינה המלאכותית</p>
+    </div>
+    <div class="tech-orbit">
+      <div class="tech-item" data-position="0">
+        <div class="tech-icon"><i class="fas fa-brain"></i></div>
+        <h3>Deep Learning</h3>
+        <p>רשתות נוירונים עמוקות לפתרון בעיות מורכבות</p>
+      </div>
+      <div class="tech-item" data-position="1">
+        <div class="tech-icon"><i class="fas fa-language"></i></div>
+        <h3>NLP</h3>
+        <p>עיבוד שפה טבעית להבנת טקסט ושיחות</p>
+      </div>
+      <div class="tech-item" data-position="2">
+        <div class="tech-icon"><i class="fas fa-robot"></i></div>
+        <h3>Machine Learning</h3>
+        <p>אלגוריתמים לומדים המשתפרים עם הזמן</p>
+      </div>
+      <div class="tech-item" data-position="3">
+        <div class="tech-icon"><i class="fas fa-chart-network"></i></div>
+        <h3>Neural Networks</h3>
+        <p>רשתות נוירונים מתקדמות בהשראת המוח האנושי</p>
+      </div>
+      <div class="tech-item" data-position="4">
+        <div class="tech-icon"><i class="fas fa-database"></i></div>
+        <h3>Big Data</h3>
+        <p>ניתוח כמויות עצומות של מידע בזמן אמת</p>
+      </div>
+    </div>
+    <div class="tech-details">
+      <div class="tech-detail active" data-tech="0">
+        <h3>Deep Learning</h3>
+        <p>טכנולוגיית Deep Learning מאפשרת למחשבים ללמוד מדוגמאות ולזהות דפוסים מורכבים. באמצעות רשתות נוירונים עמוקות, המערכות שלנו מסוגלות לבצע משימות מורכבות כמו זיהוי תמונות, עיבוד שפה טבעית וקבלת החלטות מתקדמות.</p>
+        <div class="tech-applications">
+          <h4>יישומים:</h4>
+          <ul>
+            <li>זיהוי אובייקטים בתמונות</li>
+            <li>סיווג תוכן</li>
+            <li>חיזוי התנהגות משתמשים</li>
+          </ul>
+        </div>
+      </div>
+      <!-- שאר פרטי הטכנולוגיות יוצגו דינמית דרך JavaScript -->
+    </div>
+  </section>
+
+  <!-- מקטע צור קשר -->
+  <section id="contact" class="contact-section">
+    <div class="section-header">
+      <h2>צור קשר</h2>
+      <p>מעוניינים לשמוע עוד? השאירו פרטים ונחזור אליכם בהקדם</p>
+    </div>
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="info-content">
+            <h3>כתובת</h3>
+            <p>רחוב הברזל 38, תל אביב</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-phone"></i></div>
+          <div class="info-content">
+            <h3>טלפון</h3>
+            <p>03-1234567</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-envelope"></i></div>
+          <div class="info-content">
+            <h3>אימייל</h3>
+            <p>info@neoai.co.il</p>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <form class="contact-form">
+        <div class="form-group">
+          <input type="text" placeholder="שם מלא" required>
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="אימייל" required>
+        </div>
+        <div class="form-group">
+          <input type="tel" placeholder="טלפון" required>
+        </div>
+        <div class="form-group">
+          <select>
+            <option value="" disabled selected>נושא הפנייה</option>
+            <option value="service">מידע על שירותים</option>
+            <option value="quote">הצעת מחיר</option>
+            <option value="support">תמיכה טכנית</option>
+            <option value="other">אחר</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea placeholder="הודעה..." required></textarea>
+        </div>
+        <button type="submit" class="btn-glow">שליחה</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- כפתור חזרה למעלה -->
+  <button id="back-to-top" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- פוטר -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <h2>NeoAI</h2>
+        <p>מובילים את מהפכת הבינה המלאכותית</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-links-column">
+          <h3>ניווט מהיר</h3>
+          <ul>
+            <li><a href="#">בית</a></li>
+            <li><a href="#services">שירותים</a></li>
+            <li><a href="#about">אודות</a></li>
+            <li><a href="#technologies">טכנולוגיות</a></li>
+            <li><a href="#contact">צור קשר</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-column">
+          <h3>שירותים</h3>
+          <ul>
+            <li><a href="#">Vision AI</a></li>
+            <li><a href="#">Chatbot AI</a></li>
+            <li><a href="#">Voice AI</a></li>
+            <li><a href="#">Predictive AI</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-column">
+          <h3>משאבים</h3>
+          <ul>
+            <li><a href="#">בלוג</a></li>
+            <li><a href="#">מדריכים</a></li>
+            <li><a href="#">מחקרים</a></li>
+            <li><a href="#">שאלות נפוצות</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>כל הזכויות שמורות 2025 NeoAI</p>
+      <div class="footer-legal">
+        <a href="#">תנאי שימוש</a>
+        <a href="#">מדיניות פרטיות</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- סקריפטים -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
