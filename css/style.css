@@ -1,1 +1,1063 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=Orbitron:wght@400;500;700;900&display=swap');
 
+/* ===== משתנים גלובליים ===== */
+:root {
+  --primary-color: #00ffff;
+  --primary-dark: #00b3b3;
+  --secondary-color: #ff00ff;
+  --secondary-dark: #b300b3;
+  --bg-dark: #0a0a1a;
+  --bg-darker: #050510;
+  --bg-light: #1a1a2e;
+  --text-light: #ffffff;
+  --text-gray: #b3b3cc;
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+  --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  --glow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3), 0 0 30px rgba(0, 255, 255, 0.1);
+  --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  --gradient-hover: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+
+/* ===== איפוס ועיצוב בסיסי ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Heebo', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  line-height: 1.6;
+  overflow-x: hidden;
+  direction: rtl;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1.5rem;
+  color: var(--text-gray);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button, .btn-glow {
+  background: var(--gradient);
+  color: var(--text-light);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+button:hover, .btn-glow:hover {
+  box-shadow: var(--glow);
+  transform: translateY(-3px);
+}
+
+button::before, .btn-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-hover);
+  z-index: -1;
+  transition: var(--transition);
+  opacity: 0;
+}
+
+button:hover::before, .btn-glow:hover::before {
+  opacity: 1;
+}
+
+.btn-glow {
+  position: relative;
+  padding: 12px 30px;
+  border: none;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  color: white;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.3s ease;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.btn-glow.secondary {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-glow.secondary:hover {
+  background: var(--primary-color);
+  color: var(--bg-dark);
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-weight: 700;
+}
+
+section {
+  padding: 5rem 1rem;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h2 {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.section-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: var(--gradient);
+  border-radius: 3px;
+}
+
+.section-header p {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===== רקע תלת-ממדי ===== */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* ===== אנימציית טעינה ===== */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-darker);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-content {
+  text-align: center;
+}
+
+.loader-circle {
+  width: 80px;
+  height: 80px;
+  border: 4px solid rgba(0, 255, 255, 0.1);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+.loader-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.loader-progress-container {
+  width: 200px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loader-progress-bar {
+  height: 100%;
+  width: 0;
+  background: var(--gradient);
+  transition: width 0.3s ease;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== חלקיקים מרחפים ===== */
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  background: var(--primary-color);
+  border-radius: 50%;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ===== כותרת וניווט ===== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  transition: var(--transition);
+  background: rgba(10, 10, 26, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+header.scrolled {
+  padding: 1rem 1.5rem;
+  background: rgba(10, 10, 26, 0.95);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+  margin-bottom: 0;
+  font-size: 2rem;
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: var(--text-light);
+  font-weight: 500;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient);
+  transition: var(--transition);
+}
+
+nav a:hover::after, nav a.active::after {
+  width: 100%;
+}
+
+nav a.active {
+  color: var(--primary-color);
+}
+
+/* ===== מקטע גיבור ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 5rem;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  font-size: 1.2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: 'Orbitron', sans-serif;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.stat-text {
+  font-size: 0.9rem;
+  color: var(--text-gray);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: bounce 2s infinite;
+}
+
+.mouse {
+  width: 30px;
+  height: 50px;
+  border: 2px solid var(--text-gray);
+  border-radius: 15px;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.wheel {
+  width: 6px;
+  height: 10px;
+  background: var(--primary-color);
+  border-radius: 3px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: wheel 1.5s infinite;
+}
+
+.scroll-text {
+  font-size: 0.8rem;
+  color: var(--text-gray);
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+  40% { transform: translateY(-10px) translateX(-50%); }
+  60% { transform: translateY(-5px) translateX(-50%); }
+}
+
+@keyframes wheel {
+  0% { top: 10px; opacity: 1; }
+  100% { top: 30px; opacity: 0; }
+}
+
+/* ===== מקטע שירותים ===== */
+.services-section {
+  background: linear-gradient(to bottom, var(--bg-dark), var(--bg-darker));
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background: rgba(26, 26, 46, 0.5);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  height: 100%;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.card:hover {
+  transform: translateY(-10px) rotateY(5deg);
+  box-shadow: var(--glow);
+  border-color: rgba(0, 255, 255, 0.3);
+}
+
+.card-content {
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  transition: var(--transition);
+}
+
+.card:hover .card-icon {
+  transform: scale(1.1);
+  color: var(--secondary-color);
+}
+
+.card h3 {
+  margin-bottom: 1rem;
+  transition: var(--transition);
+}
+
+.card:hover h3 {
+  color: var(--primary-color);
+}
+
+.card p {
+  margin-bottom: 1.5rem;
+}
+
+.card-link {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: var(--primary-color);
+  transition: var(--transition);
+}
+
+.card-link i {
+  transition: var(--transition);
+}
+
+.card-link:hover {
+  color: var(--secondary-color);
+}
+
+.card-link:hover i {
+  transform: translateX(-5px);
+}
+
+/* ===== מקטע אודות ===== */
+.about-section {
+  background: linear-gradient(to bottom, var(--bg-darker), var(--bg-dark));
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-text h3 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.values-list {
+  margin-bottom: 2rem;
+}
+
+.values-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.values-list i {
+  color: var(--primary-color);
+  margin-left: 1rem;
+  font-size: 1.2rem;
+}
+
+.cta-container {
+  margin-top: 2rem;
+}
+
+.about-image {
+  position: relative;
+}
+
+.image-container {
+  position: relative;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.3), rgba(255, 0, 255, 0.3));
+  opacity: 0.5;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.stat-box {
+  background: rgba(26, 26, 46, 0.7);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  flex: 1;
+  margin: 0 0.5rem;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.stat-box .stat-number {
+  font-size: 2rem;
+}
+
+/* ===== מקטע טכנולוגיות ===== */
+.tech-section {
+  background: linear-gradient(to bottom, var(--bg-dark), var(--bg-darker));
+  overflow: hidden;
+}
+
+.tech-orbit {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+}
+
+.tech-item {
+  background: rgba(26, 26, 46, 0.7);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  width: 200px;
+  transition: var(--transition);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.tech-item:hover, .tech-item.active {
+  transform: translateY(-10px);
+  box-shadow: var(--glow);
+  border-color: var(--primary-color);
+}
+
+.tech-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.tech-item h3 {
+  margin-bottom: 0.5rem;
+}
+
+.tech-item p {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.tech-details {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(26, 26, 46, 0.5);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.tech-detail {
+  display: none;
+}
+
+.tech-detail.active {
+  display: block;
+}
+
+.tech-detail h3 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.tech-applications {
+  margin-top: 1.5rem;
+}
+
+.tech-applications h4 {
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.tech-applications ul {
+  list-style: disc;
+  padding-right: 1.5rem;
+}
+
+.tech-applications li {
+  margin-bottom: 0.5rem;
+  color: var(--text-gray);
+}
+
+/* ===== מקטע צור קשר ===== */
+.contact-section {
+  background: linear-gradient(to bottom, var(--bg-darker), var(--bg-dark));
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.info-icon {
+  background: rgba(0, 255, 255, 0.1);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.info-content h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.info-content p {
+  margin-bottom: 0;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(26, 26, 46, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-light);
+  transition: var(--transition);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.social-link:hover {
+  background: var(--primary-color);
+  color: var(--bg-dark);
+  transform: translateY(-5px);
+}
+
+.contact-form {
+  background: rgba(26, 26, 46, 0.5);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(10, 10, 26, 0.5);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  color: var(--text-light);
+  font-family: 'Heebo', sans-serif;
+  transition: var(--transition);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.2);
+}
+
+.contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.contact-form button {
+  width: 100%;
+}
+
+/* ===== כפתור חזרה למעלה ===== */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--gradient);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-light);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: var(--transition);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 99;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--glow);
+}
+
+/* ===== פוטר ===== */
+footer {
+  background: var(--bg-darker);
+  padding: 4rem 1rem 1rem;
+  position: relative;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  gap: 2rem;
+}
+
+.footer-logo {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-logo h2 {
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-links-column {
+  min-width: 150px;
+}
+
+.footer-links-column h3 {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.footer-links-column ul li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-links-column a {
+  color: var(--text-gray);
+  transition: var(--transition);
+}
+
+.footer-links-column a:hover {
+  color: var(--primary-color);
+  padding-right: 5px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-bottom p {
+  margin-bottom: 0;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-legal a {
+  color: var(--text-gray);
+  font-size: 0.9rem;
+}
+
+.footer-legal a:hover {
+  color: var(--primary-color);
+}
+
+/* ===== אנימציות ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.slide-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== מדיה קווריז ===== */
+@media screen and (max-width: 1024px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  .hero h2 {
+    font-size: 2.5rem;
+  }
+  
+  .about-content,
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-image {
+    order: -1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  header h1 {
+    margin-bottom: 1rem;
+  }
+  
+  nav {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .hero h2 {
+    font-size: 2rem;
+  }
+  
+  .hero-stats {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .tech-item {
+    width: 150px;
+    padding: 1.5rem;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .hero h2 {
+    font-size: 1.8rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .hero-buttons button {
+    width: 100%;
+  }
+  
+  .card-content {
+    padding: 1.5rem;
+  }
+  
+  .tech-orbit {
+    gap: 1rem;
+  }
+  
+  .tech-item {
+    width: 130px;
+    padding: 1rem;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer-legal {
+    justify-content: center;
+  }
+}
